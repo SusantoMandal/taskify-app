@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const os = require('os');
-
-const baseURL = os.hostname();
+const baseURL = 'https://app-taskify.herokuapp.com';
 
 const task = {
   namespaced: true,

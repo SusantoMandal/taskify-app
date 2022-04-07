@@ -10,7 +10,7 @@ const port = process.env.PORT || 8000;
 const app = express();
 
 //mongodb connection 
-mongoose.connect("mongodb+srv://taskAppAdminUser:UH2Y8Fs7rfhCUDIW@cluster0.belmv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{ useNewUrlParser: true})
+mongoose.connect("mongodb+srv://taskAppAdminUser:UH2Y8Fs7rfhCUDIW@cluster0.belmv.mongodb.net/taskify?retryWrites=true&w=majority",{ useNewUrlParser: true})
 .then(() => console.log("connection is successfull"))
 .catch((error) => console.log(error));
 

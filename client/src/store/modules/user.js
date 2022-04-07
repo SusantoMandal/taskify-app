@@ -1,9 +1,7 @@
 import axios from 'axios';
 import LocalStorage from '../../utils/storage/local-storage';
 
-const os = require('os');
-
-const baseURL = os.hostname();
+const baseURL = 'https://app-taskify.herokuapp.com';
 
 const user = {
   namespaced: true,
