@@ -1,6 +1,8 @@
 import axios from 'axios';
 import LocalStorage from '../../utils/storage/local-storage';
+
 const os = require('os');
+
 const baseURL = os.hostname();
 
 const user = {

@@ -1,5 +1,7 @@
 import axios from 'axios';
+
 const os = require('os');
+
 const baseURL = os.hostname();
 
 const task = {
