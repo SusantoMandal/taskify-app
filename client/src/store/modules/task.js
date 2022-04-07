@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-const os = require('os');
-
-const baseURL = os.hostname();
+const baseURL = window.location.origin;
 
 const task = {
   namespaced: true,
