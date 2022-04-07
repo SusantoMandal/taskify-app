@@ -1,0 +1,34 @@
+[
+  {
+    "error_code": "ERR_101",
+    "message": "wrong user data"
+  },
+  {
+    "error_code": "ERR_102",
+    "message": "user already exist"
+  },
+  {
+    "error_code": "ERR_103",
+    "message": "user not exist"
+  },
+  {
+    "error_code": "ERR_201",
+    "message": "auth not present"
+  },
+  {
+    "error_code": "ERR_203",
+    "message": "invalid auth token"
+  },
+  {
+    "error_code": "ERR_301",
+    "message": "wrong task data"
+  },
+  {
+    "error_code": "ERR_303",
+    "message": "task not found"
+  },
+  {
+    "error_code": "ERR_999",
+    "message": "default error"
+  }
+]

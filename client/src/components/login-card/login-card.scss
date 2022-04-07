@@ -1,0 +1,46 @@
+.login-card-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+  padding: 60px 40px 50px;
+  background-color: white;
+  // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+  .login-header {
+    margin-bottom: 40px;
+    font-size: 37px;
+    font-weight: 700;
+  }
+  .is-invalid {
+    color:#E22B24;
+  }
+
+.user-name, .user-password, .user-email {
+    width: 320px;
+    margin: 25px 0px;
+  }
+
+  .submit-btn {
+    width: 110px;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 20px;
+  }
+
+  .create-account {
+    margin-top: 40px;
+
+    .router-class {
+      display: inline-block;
+      margin-left: 6px;
+    }
+
+    .create-account-heading {
+      display: inline-block;
+      color: #00000085;
+      margin: 0px;
+    }
+  }
+}

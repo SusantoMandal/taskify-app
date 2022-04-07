@@ -1,0 +1,129 @@
+<div class="login-card-container d-flex">
+  <h3 class="login-header" v-show="mode==='register'">Register</h3>
+  <h3 class="login-header" v-show="mode==='login'">Login</h3>
+  <form>
+    <div v-if="mode==='register'" class="user-name">
+      <label for="userName" class="form-label">Name</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="userName" 
+        v-model="userData.userId"
+        aria-describedby="name_error"
+        @blur="$v.userData.userId.$touch()"
+      />
+        <div
+        id="name_error"
+        v-if="$v.userData.userId.$error"
+        >
+        <small
+          class="form-text error is-invalid"
+          v-if="!$v.userData.userId.required"
+        >
+          Please enter your name
+        </small>
+        <small
+          class="form-text error is-invalid"
+          v-else-if="!$v.userData.userId.minLength"
+        >
+          Field must contain minimum three characters
+        </small>
+      </div>
+    </div>
+    <div class="user-email">
+      <label for="email" class="form-label">Enter Email</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="email" 
+        v-model="userData.email"
+        aria-describedby="email_error"
+        @blur="$v.userData.email.$touch()"
+      />
+        <div
+        id="email_error"
+        v-if="$v.userData.email.$error"
+        >
+        <small
+          class="form-text error is-invalid"
+          v-if="!$v.userData.email.required"
+        >
+          Please enter your email
+        </small>
+        <small
+          class="form-text error is-invalid"
+          v-else-if="!$v.userData.email.email"
+        >
+          Please enter valid email address
+        </small>
+      </div>
+    </div>
+    <div class="user-password">
+      <label for="userPassword" class="form-label">Enter Password</label>
+      <input type="password" 
+        class="form-control" 
+        id="userPassword" 
+        v-model="userData.password"
+        
+        aria-describedby="password_error"
+        @blur="$v.userData.password.$touch()"
+      >
+      <div
+        id="password_error"
+        v-if="$v.userData.password.$error"
+        >
+        <small
+          class="form-text error is-invalid"
+          v-if="!$v.userData.password.required"
+        >
+          Please enter your password
+        </small>
+        <small
+          class="form-text error is-invalid"
+          v-else-if="!$v.userData.password.minLength"
+        >
+          Field must contain minimum five characters
+        </small>
+      </div>
+    </div>
+    <div v-if="mode==='register'" class="user-password">
+      <label for="confirmPassword" class="form-label">Confirm Password</label>
+      <input 
+        type="password"
+        class="form-control"
+        id="confirmPassword"
+        v-model="userData.confirmPassword"
+        aria-describedby="confirmPassword_error"
+        @blur="$v.userData.confirmPassword.$touch()"
+      >
+      <div
+        id="confirmPassword_error"
+        v-if="$v.userData.confirmPassword.$error"
+        >
+        <small
+          class="form-text error is-invalid"
+          v-if="!$v.userData.confirmPassword.required"
+        >
+          Please enter your password again
+        </small>
+        <small
+          class="form-text error is-invalid"
+          v-else-if="!$v.userData.confirmPassword.sameAsPassword"
+        >
+          Password doesn't match
+        </small>
+      </div>
+    </div>
+  </form>
+
+  <button type="submit" class="btn btn-outline-dark submit-btn" @click="emitToParent" :disabled="isSubmitDisable || $v.userData.$anyError">Submit</button>
+  
+  <div class="create-account" v-if="mode==='register'">
+    <p class="create-account-heading">Already have an account?</p>
+    <router-link class="router-class" to="/login">Sign In</router-link>
+  </div>
+  <div class="create-account" v-if="mode==='login'">
+    <p class="create-account-heading">Create a new account?</p>
+    <router-link class="router-class" to="/register">Sign Up</router-link>
+  </div>
+</div>

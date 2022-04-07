@@ -1,0 +1,20 @@
+<div class="header-container d-flex">
+  <router-link class="header-router d-flex" to="/">
+    <i class="fa-solid fa-house home-icon"></i>
+    <p class="header-home" data-test="Home">Home</p>
+  </router-link>
+
+  <div v-if="showSignButtons && !getAccessToken" class="sign-btn-container">
+    <button class="btn btn-outline-dark" @click="goToLoginPage" id ="signin" data-test="Sign-in">
+      Sign in
+    </button>
+    <button class="btn btn-outline-dark" @click="goToRegisterPage" data-test="Sign-up">
+      Sign up
+    </button>
+  </div>
+  <div v-if="getAccessToken" class="sign-btn-container">
+    <button class="btn btn-outline-dark" @click="signOutUser">
+      Sign out
+    </button>
+  </div>
+</div>

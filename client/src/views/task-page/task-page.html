@@ -1,0 +1,96 @@
+<!-- <div style="backdrop-filter: blur(3px);height:100%;"> -->
+  <div class="task-container">
+    <div class="task-component">
+      <h1 class="task-heading">Track your task here</h1>
+
+      <div class="task-badges-container">
+        <span class="badge task-badges" style="background: rgb(230 242 255); color: rgb(0 64 133);">
+          Total : {{allTasks.length}}
+        </span>
+        <span class="badge task-badges" style="background: rgb(230 245 233); color: #3e774b;">
+          Success : {{completedTask || 0}}
+        </span>
+        <span class="badge task-badges" style="background: #ff00001f; color: #b71b1b;">
+          Pending : {{allTasks.length - completedTask}}
+        </span>
+      </div>
+
+      <div class="form-group d-flex add-task-form">
+        <input
+          type="text"
+          class ="task-input form-control"
+          placeholder="Enter new task"
+          v-model="taskData.taskDescription"
+          @keydown.enter="addTask"
+          aria-describedby="description_error"
+          @focus="$v.taskData.taskDescription.$touch()">
+        <span @click="addTask" class="my-auto">
+          <i class="fa-solid fa-circle-plus add-icon"></i>
+        </span>
+      </div>
+      <!-- <div
+      id="description_error"
+      v-if="$v.taskData.taskDescription.$error"
+      >
+      <small
+        class="form-text error is-invalid"
+        v-if="!$v.taskData.taskDescription.required"
+      >
+        Please enter a task
+      </small>
+    </div> -->
+
+      <div class="task-link-container d-flex">
+        <a href="javascript:void(0)" class="task-link" @click="allTask">All</a>
+        <a href="javascript:void(0)" class="task-link" @click="activeTask">Active</a>
+        <a href="javascript:void(0)" class="task-link" @click="doneTask">Completed</a>
+      </div>
+
+      <div class="task-list-container" v-for="task in tasks" :key="task._id">
+        <div class="task-list">
+          <input 
+          class="form-check-input task-checkbox"
+          type="checkbox"
+          v-model="task.completed"
+          @click="changeTaskStatus(task._id)"
+          id="taskStatus">
+          <p class="task-description" :class="{'task-status': task.completed}">
+            {{task.description}}
+          </p>
+        </div>
+
+        <div class="task-delete">
+          <span @click="deleteTask(task._id, task.description)">
+            <i class="fa-solid fa-trash delete-icon"></i>
+          </span>
+        </div>
+    </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+    <!-- <b-modal
+    id="delete-task"
+    class="delete-modal"
+    ref="delete-task-modal"
+    centered
+    :hide-footer="hideModalFooter"
+    :hide-header="hideModalheader"
+    body-class="px-3 pb-5 d-flex flex-column justify-content-center align-items-center"
+    >
+    <p class="modal-heading">Are you sure you want delete this task?</p>
+    <div class="d-flex delete-btn-confirm">
+      <button class="btn btn-outline-primary modal-submit-btn" @click="closeModal">No</button>
+      <button class="btn btn-outline-danger modal-submit-btn" @click="deleteTask">Yes</button>
+    </div>
+    </b-modal> -->
+
+    
+  </div>
