@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="40px" viewBox="0 0 38 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Spinner</title>
+    <animateTransform
+        attributeName="transform"
+        type="rotate"
+        dur="1s"
+        from="0 0 0"
+        to="360 0 0"
+        repeatCount="indefinite"/>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="96.2320615%" y2="74.226185%" id="linearGradient-1">
+            <stop stop-color="#0074BD" offset="0%"></stop>
+            <stop stop-color="#DFEEF7" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Proto-checkout" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="[Mobile-portrait]---PreLoader" transform="translate(-141.000000, -264.000000)" fill="url(#linearGradient-1)">
+            <path d="M156.151284,264 L156.890591,266.9082 C149.487056,268.745984 144,275.436173 144,283.40819 C144,292.79719 151.611,300.40819 161,300.40819 C167.659035,300.40819 173.423704,296.579716 176.213025,291.003748 L178.894024,292.351134 C175.611028,298.907188 168.831037,303.40819 161,303.40819 C149.9545,303.40819 141,294.45369 141,283.40819 C141,274.034784 147.4486,266.167216 156.151284,264 Z" id="Spinner"></path>
+        </g>
+    </g>
+</svg>
