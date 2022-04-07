@@ -1,4 +1,6 @@
 import axios from 'axios';
+const os = require('os');
+const baseURL = os.hostname();
 
 const task = {
   namespaced: true,
@@ -9,7 +11,7 @@ const task = {
     getAllTasks({ commit, rootGetters }) {
       const config = {
         method: 'get',
-        url: 'http://localhost:8000/tasks',
+        url: `${baseURL}/tasks`,
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
@@ -26,7 +28,7 @@ const task = {
     updateTask({ rootGetters }, { taskId }) {
       const config = {
         method: 'put',
-        url: `http://localhost:8000/tasks/${taskId}`,
+        url: `${baseURL}/tasks/${taskId}`,
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
@@ -42,7 +44,7 @@ const task = {
       };
       const config = {
         method: 'post',
-        url: 'http://localhost:8000/tasks',
+        url: `${baseURL}/tasks`,
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
@@ -60,7 +62,7 @@ const task = {
     deleteTask({ dispatch, rootGetters }, { taskId }) {
       const config = {
         method: 'delete',
-        url: `http://localhost:8000/tasks/${taskId}`,
+        url: `${baseURL}/tasks/${taskId}`,
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',

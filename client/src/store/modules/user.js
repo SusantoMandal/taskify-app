@@ -1,5 +1,7 @@
 import axios from 'axios';
 import LocalStorage from '../../utils/storage/local-storage';
+const os = require('os');
+const baseURL = os.hostname();
 
 const user = {
   namespaced: true,
@@ -8,7 +10,7 @@ const user = {
   },
   actions: {
     loginUser({ commit }, userData) {
-      return axios.post('http://localhost:8000/signin', userData)
+      return axios.post(`${baseURL}/signin`, userData)
         .then((response) => {
           commit('setAccessToken', response.data.accessToken);
         })
@@ -23,7 +25,7 @@ const user = {
         });
     },
     registerUser({ commit }, userData) {
-      return axios.post('http://localhost:8000/signup', userData)
+      return axios.post(`${baseURL}/signup`, userData)
         .then((response) => {
           commit('setAccessToken', response.data.accessToken);
         })
@@ -32,7 +34,7 @@ const user = {
     verifyAuth({ rootGetters }) {
       const config = {
         method: 'get',
-        url: 'http://localhost:8000/authenticate',
+        url: `${baseURL}/authenticate`,
         headers: {
           'Access-Control-Allow-Origin': '*',
           authorization: `Bearer ${rootGetters['user/getAccessToken']}`
@@ -49,10 +51,8 @@ const user = {
       state.accessToken = token;
     },
     removeAccessToken: (state) => {
-      debugger;
       LocalStorage.removeItem('Auth');
       state.accessToken = null;
-      debugger;
     }
   },
   getters: {
