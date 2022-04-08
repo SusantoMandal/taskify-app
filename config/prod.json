@@ -1,0 +1,3 @@
+{
+  "MONGODB_CONNECTION_URL": "mongodb+srv://taskAppAdminUser:UH2Y8Fs7rfhCUDIW@cluster0.belmv.mongodb.net/taskify?retryWrites=true&w=majority"
+}

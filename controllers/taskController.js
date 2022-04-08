@@ -36,7 +36,7 @@ updateTask = async (req,res) => {
         const taskId = req.params.tid;
         isValidId(taskId);
         const result =  await taskService.updateStatus(userData, taskId);
-        res.status(201).send(result);
+        res.status(200).send(result);
     } catch(err) {
         res.status(404).send({
             error: err.message,
@@ -51,7 +51,7 @@ deleteTask = async (req,res) => {
         const taskId = req.params.tid;
         isValidId(taskId);
         const result = await taskService.deleteTask(userData, taskId);
-        res.status(201).send(result);
+        res.status(200).send(result);
     } catch(err) {
         res.status(404).send({
             error: err.message,
