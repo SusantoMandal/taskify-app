@@ -8,8 +8,9 @@
   },
   "scripts": {
     "test": "mocha --exit",
-    "install-client": "cd client && npm install && npm install -g @vue/cli && npm run build",
-    "heroku-postbuild" : "npm run install-client",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install && npm install @vue/cli-service",
+    "heroku-postbuild" : "npm run install-client && npm run build",
     "start": "nodemon server.js"
   },
   "author": "",
