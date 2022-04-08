@@ -70,7 +70,7 @@ describe('Testing rest api', () => {
         chai.request(server)
         .put('/task/' + id)
         .end((err, res) => {
-          expect(res.status).to.equal(201);
+          expect(res.status).to.equal(200);
           expect(res.body).to.be.a("object");
           expect(res.body).to.have.property('_id');
           expect(res.body).to.have.property('description');
