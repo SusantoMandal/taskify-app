@@ -1,8 +1,10 @@
 // import all the necessary packages
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require('cors')
+const cors = require('cors');
+const path = require('path');
 const taskRoutes = require("./routes/router");
+const config = require('./config');
 
 // we are using port 8000
 const port = process.env.PORT || 8000;
@@ -10,7 +12,7 @@ const port = process.env.PORT || 8000;
 const app = express();
 
 //mongodb connection 
-mongoose.connect("mongodb+srv://taskAppAdminUser:UH2Y8Fs7rfhCUDIW@cluster0.belmv.mongodb.net/taskify?retryWrites=true&w=majority",{ useNewUrlParser: true})
+mongoose.connect(config.MONGODB_CONNECTION_URL,{ useNewUrlParser: true})
 .then(() => console.log("connection is successfull"))
 .catch((error) => console.log(error));
 
@@ -21,7 +23,7 @@ app.use('/api', taskRoutes);
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('./client/dist'));
   app.get('*', (req, res)=> {
-    res.sendFile('./client/dist/index.html')
+    res.sendFile(path.resolve(process.cwd(), 'client', 'dist', 'index.html'))
   })
 }
 

@@ -27,7 +27,8 @@
       .task-badges{
         margin: 0px 16px;
         font-size: 17px;
-        padding: 8px 16px
+        padding: 8px 16px;
+        user-select: none;
       }
     }
 
@@ -57,11 +58,16 @@
       margin-left: 32px;
 
       .task-link {
-        color: grey;
+        color: rgba(128, 128, 128, 0.56);
         margin-right: 24px;
         font-size: 18px;
         font-weight: 500;
         text-decoration: none;
+        user-select: none;
+      }
+      .active {
+        font-weight: bold;
+        color: #ffbd08;
       }
     }
 
@@ -97,6 +103,11 @@
         }
       }
 
+    }
+
+    .empty-task {
+      margin-top: 40px;
+      font-size: 24px;
     }
 
   }

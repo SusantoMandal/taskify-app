@@ -8,7 +8,7 @@ getAllTasks = async (req, res) =>  {
         const result = await taskService.getAllTasks(userData);
         res.send(result);
     } catch(err) {
-        res.status(404).send({
+        res.send({
             error: err.message,
             code: err.code
         });
@@ -23,7 +23,7 @@ addTask = async (req,res) => {
         const result = await taskService.addTask(userData, taskData);
         res.status(201).send(result);
     } catch(err) {
-        res.status(404).send({
+        res.send({
             error: err.message,
             code: err.code
         });
@@ -36,9 +36,9 @@ updateTask = async (req,res) => {
         const taskId = req.params.tid;
         isValidId(taskId);
         const result =  await taskService.updateStatus(userData, taskId);
-        res.status(201).send(result);
+        res.status(200).send(result);
     } catch(err) {
-        res.status(404).send({
+        res.send({
             error: err.message,
             code: err.code
         });
@@ -51,9 +51,9 @@ deleteTask = async (req,res) => {
         const taskId = req.params.tid;
         isValidId(taskId);
         const result = await taskService.deleteTask(userData, taskId);
-        res.status(201).send(result);
+        res.status(200).send(result);
     } catch(err) {
-        res.status(404).send({
+        res.send({
             error: err.message,
             code: err.code
         });

@@ -15,7 +15,8 @@ export default {
       hideModalFooter: true,
       hideModalheader: true,
       userId: null,
-      tasks: []
+      tasks: [],
+      activeLink: 'all'
     };
   },
   validations: {
@@ -83,13 +84,16 @@ export default {
         appendToast: true
       });
     },
-    activeTask() {
-      this.tasks = this.allTasks.filter((task) => task.completed === false);
-    },
     allTask() {
+      this.activeLink = 'all';
       this.tasks = this.allTasks;
     },
+    activeTask() {
+      this.activeLink = 'active';
+      this.tasks = this.allTasks.filter((task) => task.completed === false);
+    },
     doneTask() {
+      this.activeLink = 'done';
       this.tasks = this.allTasks.filter((task) => task.completed === true);
     },
     touchPopulatedFields() {

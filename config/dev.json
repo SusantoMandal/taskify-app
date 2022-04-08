@@ -1,0 +1,3 @@
+{
+  "MONGODB_CONNECTION_URL": "mongodb://localhost/taskify"
+}
