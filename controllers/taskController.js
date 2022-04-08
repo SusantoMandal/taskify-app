@@ -23,7 +23,7 @@ addTask = async (req,res) => {
         const result = await taskService.addTask(userData, taskData);
         res.status(201).send(result);
     } catch(err) {
-        res.status(404).send({
+        res.status(400).send({
             error: err.message,
             code: err.code
         });
