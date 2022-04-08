@@ -12,7 +12,6 @@ const port = process.env.PORT || 8000;
 const app = express();
 
 //mongodb connection 
-console.log(config.MONGODB_CONNECTION_URL);
 mongoose.connect(config.MONGODB_CONNECTION_URL,{ useNewUrlParser: true})
 .then(() => console.log("connection is successfull"))
 .catch((error) => console.log(error));
@@ -21,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api', taskRoutes);
 
-if(true || process.env.NODE_ENV === 'production') {
+if(process.env.NODE_ENV === 'production') {
   app.use(express.static('./client/dist'));
   app.get('*', (req, res)=> {
     res.sendFile(path.resolve(process.cwd(), 'client', 'dist', 'index.html'))
