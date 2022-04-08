@@ -1,7 +1,6 @@
 import axios from 'axios';
+import TASKIFY_API_ENDPOINT from './api-endpoints';
 import LocalStorage from '../../utils/storage/local-storage';
-
-const baseURL = 'https://app-taskify.herokuapp.com';
 
 const user = {
   namespaced: true,
@@ -10,22 +9,17 @@ const user = {
   },
   actions: {
     loginUser({ commit }, userData) {
-      return axios.post(`${baseURL}/signin`, userData)
+      console.log(process.env.NODE_ENV);
+      return axios.post(TASKIFY_API_ENDPOINT.loginUser, userData)
         .then((response) => {
           commit('setAccessToken', response.data.accessToken);
         })
         .catch((error) => {
           console.log(error);
-          // throw new Error(error);
-          // if (error.response.status === 401) {
-          //   this.$router.push({
-          //     name: 'LoginPage'
-          //   });
-          // }
         });
     },
     registerUser({ commit }, userData) {
-      return axios.post(`${baseURL}/signup`, userData)
+      return axios.post(TASKIFY_API_ENDPOINT.registerUser, userData)
         .then((response) => {
           commit('setAccessToken', response.data.accessToken);
         })
@@ -34,7 +28,7 @@ const user = {
     verifyAuth({ rootGetters }) {
       const config = {
         method: 'get',
-        url: `${baseURL}/authenticate`,
+        url: TASKIFY_API_ENDPOINT.authenticateUser,
         headers: {
           'Access-Control-Allow-Origin': '*',
           authorization: `Bearer ${rootGetters['user/getAccessToken']}`
@@ -57,10 +51,6 @@ const user = {
   },
   getters: {
     getAccessToken: (state) => state.accessToken || LocalStorage.getItem('Auth')
-    // getAccessToken: (state) => {
-    //   const localToken = LocalStorage.getItem('Auth');
-    //   return state.accessToken || localToken;
-    // }
   }
 };
 

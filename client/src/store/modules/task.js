@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const baseURL = 'https://app-taskify.herokuapp.com';
+import TASKIFY_API_ENDPOINT from './api-endpoints';
 
 const task = {
   namespaced: true,
@@ -11,7 +10,7 @@ const task = {
     getAllTasks({ commit, rootGetters }) {
       const config = {
         method: 'get',
-        url: `${baseURL}/tasks`,
+        url: TASKIFY_API_ENDPOINT.taskAPI,
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
@@ -25,26 +24,13 @@ const task = {
         })
         .catch((error) => { console.error(error); throw error; });
     },
-    updateTask({ rootGetters }, { taskId }) {
-      const config = {
-        method: 'put',
-        url: `${baseURL}/tasks/${taskId}`,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          authorization: `Bearer ${rootGetters['user/getAccessToken']}`
-        }
-      };
-      const request = axios(config);
-      request.catch((error) => { console.error(error); throw error; });
-    },
     addTask({ dispatch, rootGetters }, { description }) {
       const data = {
         description
       };
       const config = {
         method: 'post',
-        url: `${baseURL}/tasks`,
+        url: TASKIFY_API_ENDPOINT.taskAPI,
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
@@ -59,10 +45,23 @@ const task = {
         })
         .catch((error) => { console.error(error); });
     },
+    updateTask({ rootGetters }, { taskId }) {
+      const config = {
+        method: 'put',
+        url: `${TASKIFY_API_ENDPOINT.taskAPI}/${taskId}`,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          authorization: `Bearer ${rootGetters['user/getAccessToken']}`
+        }
+      };
+      const request = axios(config);
+      request.catch((error) => { console.error(error); throw error; });
+    },
     deleteTask({ dispatch, rootGetters }, { taskId }) {
       const config = {
         method: 'delete',
-        url: `${baseURL}/tasks/${taskId}`,
+        url: `${TASKIFY_API_ENDPOINT.taskAPI}/${taskId}`,
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',

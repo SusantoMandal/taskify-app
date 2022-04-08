@@ -16,7 +16,7 @@ mongoose.connect("mongodb+srv://taskAppAdminUser:UH2Y8Fs7rfhCUDIW@cluster0.belmv
 
 app.use(cors());
 app.use(express.json());
-app.use(taskRoutes);
+app.use('/api', taskRoutes);
 
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('./client/dist'));
