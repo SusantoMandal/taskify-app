@@ -23,6 +23,7 @@ export default {
     },
     async signOutUser() {
       await this.$store.commit('user/removeAccessToken');
+      this.$store.hotUpdate(this.$store.state);
       this.$router.push({
         name: 'HomePage'
       });
