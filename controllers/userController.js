@@ -11,7 +11,7 @@ signUpUser = async (req, res) => {
       const accessToken = generateAuthToken(user);
       res.status(201).send({accessToken});
   } catch(err) {
-      res.status(404).send({
+      res.send({
         error: err.message,
         code: err.code
       });
@@ -27,7 +27,7 @@ signInUser = async(req,res) => {
       const accessToken = generateAuthToken(user);
       res.send({accessToken});
   } catch(err) {
-      res.status(404).send({
+      res.send({
         error: err.message,
         code: err.code
       });
