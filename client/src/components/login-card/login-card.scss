@@ -22,6 +22,11 @@
     margin: 25px 0px;
   }
 
+  .login-card-btn {
+    display: flex;
+    width:100%;
+    justify-content: space-evenly;
+  }
   .submit-btn {
     width: 110px;
     height: 40px;

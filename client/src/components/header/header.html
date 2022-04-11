@@ -12,9 +12,24 @@
       Sign up
     </button>
   </div>
-  <div v-if="getAccessToken" class="sign-btn-container">
+  <!-- <div v-if="getAccessToken" class="sign-btn-container">
     <button class="btn btn-outline-dark" @click="signOutUser">
       Sign out
     </button>
-  </div>
+  </div> -->
+    <b-dropdown   no-caret toggle-class='customDropdown' variant='none' class="drp-btn" ref="login-dropdown" right offset="12">
+      <template #button-content>
+        <button  type="button" class ="btn" style="font-size: 24px;
+        font-weight: 500; padding: 0px 3px 0px;">
+          <i class="fa-solid fa-circle-user user-icon"></i>
+        </button>
+        <i class="fa fa-caret-up" v-if="dropdownItemVisible()"></i>
+        <i class="fa fa-caret-down" v-else></i>
+      </template>
+      <b-dropdown-item class="drp-name">Signed in as
+      <div style="font-weight: 700;">{{getUserName }}</div></b-dropdown-item>
+      <b-dropdown-divider></b-dropdown-divider>
+      <b-dropdown-item v-if="isTaskDropdown" @click="goToTaskPage">Your tasks</b-dropdown-item>
+      <b-dropdown-item @click="signOutUser">Sign out</b-dropdown-item>
+    </b-dropdown>
 </div>

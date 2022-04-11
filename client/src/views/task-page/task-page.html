@@ -16,19 +16,33 @@
         </span>
       </div>
 
-      <div class="form-group d-flex add-task-form">
-        <input
-          type="text"
-          class ="task-input form-control"
-          placeholder="Enter new task"
-          v-model="taskData.taskDescription"
-          @keydown.enter="addTask"
-          aria-describedby="description_error"
-          @focus="$v.taskData.taskDescription.$touch()">
-        <span @click="addTask" class="my-auto">
-          <i class="fa-solid fa-circle-plus add-icon"></i>
-        </span>
+      <div style="width:100%; margin: 16px 0px 32px; padding-left: 9%;" class="mx-auto">
+        <div class="form-group d-flex add-task-form">
+          <input
+            type="text"
+            class ="task-input form-control"
+            placeholder="Enter new task"
+            v-model="taskData.taskDescription"
+            @keydown.enter="addTask"
+            aria-describedby="description_error"
+            @focus="changeDescriptionStatus"
+          >
+          <span @click="addTask" class="my-auto">
+            <i class="fa-solid fa-circle-plus add-icon"></i>
+          </span>
+        </div>
+        <div
+        v-if = "isDescriptionEmpty"
+        id = "description_error"
+        class="is-invalid"
+        >
+        <small
+        >
+          Task can't be empty
+        </small>
       </div>
+      </div>
+      
 
       <div class="task-link-container d-flex">
         <a href="javascript:void(0)" class="task-link" :class="{active : activeLink === 'all'}" @click="allTask">All</a>
@@ -36,25 +50,32 @@
         <a href="javascript:void(0)" class="task-link" :class="{active : activeLink === 'done'}" @click="doneTask">Completed</a>
       </div>
 
-      <div class="task-list-container" v-for="task in tasks" :key="task._id">
-        <div class="task-list">
-          <input 
-          class="form-check-input task-checkbox"
-          type="checkbox"
-          v-model="task.completed"
-          @click="changeTaskStatus(task._id)"
-          id="taskStatus">
-          <p class="task-description" :class="{'task-status': task.completed}">
-            {{task.description}}
-          </p>
-        </div>
-
-        <div class="task-delete">
-          <span @click="deleteTask(task._id, task.description)">
-            <i class="fa-solid fa-trash delete-icon"></i>
-          </span>
+      <div style="width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap; overflow-y: auto;
+       max-height: 350px;">
+        <div class="task-list-container" v-for="task in tasks" :key="task._id">
+          <div class="task-list">
+            <input 
+            class="form-check-input task-checkbox"
+            type="checkbox"
+            v-model="task.completed"
+            @click="changeTaskStatus(task._id)"
+            id="taskStatus">
+            <p class="task-description" :class="{'task-status': task.completed}">
+              {{task.description}}
+            </p>
+          </div>
+  
+          <div class="task-delete">
+            <span @click="deleteTask(task._id, task.description)">
+              <i class="fa-solid fa-trash delete-icon"></i>
+            </span>
+          </div>
         </div>
       </div>
+      
 
       <div class="empty-task" v-if="allTasks.length === 0">
         No Task has been added yet. Please enter a task.

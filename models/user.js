@@ -37,7 +37,7 @@ const getUser = async(userData) => {
             error.code = "ERR_103";
             throw error;
         }
-        return data.email;
+        return {userEmail: data.email, userName: data.name};
     } catch(err) {
         if(err.code !== "ERR_103") {
             err.code = "ERR_999";

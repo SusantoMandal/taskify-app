@@ -28,10 +28,26 @@
   .sign-btn-container {
     margin: 0px 30px;
 
+     .user-icon {
+      margin: 0px 10px;
+      // padding: 4px 16px;
+      // border-radius: 17px;
+      font-size: 2rem;
+     }
     .btn {
       margin: 0px 10px;
       padding: 4px 16px;
       border-radius: 17px;
     }
   }
+  .customDropdown {
+    background-color: none;
+    border-color: none;
+    color:none;
+  }
+  .drp-btn /deep/.dropdown-item {
+        padding: 0px  0px 8px 12px;
+        // padding-left: 12px;;
+  }
+
 }

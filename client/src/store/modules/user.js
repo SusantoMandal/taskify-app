@@ -5,7 +5,8 @@ import LocalStorage from '../../utils/storage/local-storage';
 const user = {
   namespaced: true,
   state: {
-    accessToken: null
+    accessToken: null,
+    userName: ''
   },
   actions: {
     loginUser({ commit }, userData) {
@@ -13,6 +14,7 @@ const user = {
       return axios.post(TASKIFY_API_ENDPOINT.loginUser, userData)
         .then((response) => {
           commit('setAccessToken', response.data.accessToken);
+          commit('setUserName', response.data.userName);
         })
         .catch((error) => {
           console.log(error);
@@ -22,6 +24,7 @@ const user = {
       return axios.post(TASKIFY_API_ENDPOINT.registerUser, userData)
         .then((response) => {
           commit('setAccessToken', response.data.accessToken);
+          commit('setUserName', response.data.userName);
         })
         .catch((error) => { console.error(error); });
     },
@@ -47,10 +50,15 @@ const user = {
     removeAccessToken: (state) => {
       LocalStorage.removeItem('Auth');
       state.accessToken = null;
+    },
+    setUserName: (state, name) => {
+      LocalStorage.setItem('userName', name);
+      state.userName = name;
     }
   },
   getters: {
-    getAccessToken: (state) => state.accessToken || LocalStorage.getItem('Auth')
+    getAccessToken: (state) => state.accessToken || LocalStorage.getItem('Auth'),
+    getUserName: (state) => state.userName || LocalStorage.getItem('userName')
   }
 };
 
