@@ -17,7 +17,7 @@
       Sign out
     </button>
   </div> -->
-    <b-dropdown   no-caret toggle-class='customDropdown' variant='none' class="drp-btn" ref="login-dropdown" right offset="12">
+    <b-dropdown  v-if="getAccessToken" no-caret toggle-class='customDropdown' variant='none' class="drp-btn" ref="login-dropdown" right offset="12">
       <template #button-content>
         <button  type="button" class ="btn" style="font-size: 24px;
         font-weight: 500; padding: 0px 3px 0px;">
