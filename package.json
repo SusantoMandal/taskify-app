@@ -10,7 +10,7 @@
     "test": "mocha --exit",
     "start": "nodemon server.js",
     "postinstall": "npm install --prefix client --production=false",
-    "build": "cd client && npm run build"
+    "build": "npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
