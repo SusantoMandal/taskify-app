@@ -9,8 +9,8 @@
   "scripts": {
     "test": "mocha --exit",
     "start": "nodemon server.js",
-    "build-client": "cd client && npm i --prefix ./client --production=false && npm run build",
-    "postinstall": "npm run build-client"
+    "postinstall": "npm install --prefix client",
+    "build": "cd client && npm run build"
   },
   "author": "",
   "license": "ISC",
