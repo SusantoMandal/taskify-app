@@ -8,6 +8,7 @@ import {
   sameAs,
   email
 } from 'vuelidate/lib/validators/index';
+import { mapState } from 'vuex';
 
 export default {
   name: 'LoginCard',
@@ -45,6 +46,7 @@ export default {
     mode: String
   },
   computed: {
+    ...mapState('user', ['isInvalidUser']),
     isSubmitDisable() {
       if (this.mode === 'register') {
         return !this.userData.userId.length > 0

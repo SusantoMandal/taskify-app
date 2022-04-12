@@ -6,7 +6,8 @@ const user = {
   namespaced: true,
   state: {
     accessToken: null,
-    userName: ''
+    userName: '',
+    isInvalidUser: false
   },
   actions: {
     loginUser({ commit }, userData) {
@@ -17,7 +18,9 @@ const user = {
           commit('setUserName', response.data.userName);
         })
         .catch((error) => {
+          commit('setInvalidUser', true);
           console.log(error);
+          throw error;
         });
     },
     registerUser({ commit }, userData) {
@@ -58,6 +61,9 @@ const user = {
     removeUserName: (state) => {
       LocalStorage.removeItem('userName');
       state.userName = null;
+    },
+    setInvalidUser: (state, value) => {
+      state.isInvalidUser = value;
     }
   },
   getters: {

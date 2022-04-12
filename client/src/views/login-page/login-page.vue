@@ -14,16 +14,22 @@ export default {
   },
   methods: {
     async loginUser(userEmail, userPassword) {
-      const payload = {
-        email: userEmail,
-        password: userPassword
-      };
-      this.$store.dispatch('pageLoader/show');
-      await this.$store.dispatch('user/loginUser', payload);
-      this.$store.dispatch('pageLoader/hide');
-      this.$router.push({
-        name: 'TaskPage'
-      });
+      try {
+        const payload = {
+          email: userEmail,
+          password: userPassword
+        };
+        this.$store.dispatch('pageLoader/show');
+        await this.$store.dispatch('user/loginUser', payload);
+        this.$store.dispatch('pageLoader/hide');
+        this.$router.push({
+          name: 'TaskPage'
+        });
+      } catch (err) {
+        console.log(err);
+      } finally {
+        this.$store.dispatch('pageLoader/hide');
+      }
     }
   },
   async created() {

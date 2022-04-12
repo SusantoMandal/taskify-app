@@ -1,6 +1,7 @@
 <div class="login-card-container">
   <h3 class="login-header" v-show="mode==='register'">Register</h3>
   <h3 class="login-header" v-show="mode==='login'">Login</h3>
+  <p v-if="isInvalidUser">invalid email or paassword</p>
   <form class="task-form">
     <div v-if="mode==='register'" class="user-name">
       <label for="userName" class="form-label">Name</label>
