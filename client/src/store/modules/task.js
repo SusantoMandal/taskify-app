@@ -56,7 +56,7 @@ const task = {
         }
       };
       const request = axios(config);
-      request.catch((error) => { console.error(error); throw error; });
+      return request.catch((error) => { console.error(error); throw error; });
     },
     deleteTask({ dispatch, rootGetters }, { taskId }) {
       const config = {

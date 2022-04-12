@@ -16,7 +16,8 @@ export default {
       hideModalheader: true,
       userId: null,
       tasks: [],
-      activeLink: 'all'
+      activeLink: 'all',
+      isDescriptionEmpty: false
     };
   },
   validations: {
@@ -41,6 +42,11 @@ export default {
   },
   methods: {
     async addTask() {
+      if (this.taskData.taskDescription.length === 0) {
+        this.isDescriptionEmpty = true;
+        return;
+      }
+      this.isDescriptionEmpty = false;
       const payload = {
         description: this.taskData.taskDescription
       };
@@ -62,10 +68,19 @@ export default {
       const payload = {
         taskId
       };
-      this.$store.dispatch('pageLoader/show');
+      // this.$store.dispatch('pageLoader/show');
       await this.$store.dispatch('task/updateTask', payload);
-      this.task = this.allTasks;
-      this.$store.dispatch('pageLoader/hide');
+      this.taskUpdate();
+      // this.$store.dispatch('pageLoader/hide');
+    },
+    taskUpdate() {
+      if (this.activeLink === 'active') {
+        this.tasks = this.allTasks.filter((task) => task.completed === false);
+      } else if (this.activeLink === 'done') {
+        this.tasks = this.allTasks.filter((task) => task.completed === true);
+      } else if (this.activeLink === 'all') {
+        this.tasks = this.allTasks;
+      }
     },
     async deleteTask(taskId, taskDescription) {
       const payload = {
@@ -105,6 +120,9 @@ export default {
           this.$v.taskData[key].$touch();
         }
       });
+    },
+    changeDescriptionStatus() {
+      this.isDescriptionEmpty = false;
     }
   },
   async created() {
@@ -116,7 +134,9 @@ export default {
         name: 'LoginPage'
       });
     }
-    await this.$store.dispatch('task/getAllTasks');
+    if (this.allTasks.length === 0) {
+      await this.$store.dispatch('task/getAllTasks');
+    }
     this.tasks = this.allTasks;
     this.$store.dispatch('pageLoader/hide');
   },

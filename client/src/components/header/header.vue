@@ -8,7 +8,10 @@ export default {
   name: 'Header',
   computed: {
     ...mapState('header', ['showSignButtons']),
-    ...mapGetters('user', ['getAccessToken'])
+    ...mapGetters('user', ['getAccessToken', 'getUserName']),
+    isTaskDropdown() {
+      return this.$route.name !== 'TaskPage';
+    }
   },
   methods: {
     goToLoginPage() {
@@ -23,9 +26,18 @@ export default {
     },
     async signOutUser() {
       await this.$store.commit('user/removeAccessToken');
+      await this.$store.commit('user/removeUserName');
       this.$store.hotUpdate(this.$store.state);
       this.$router.push({
         name: 'HomePage'
+      });
+    },
+    dropdownItemVisible() {
+      return this.$refs['login-dropdown']?.visible;
+    },
+    goToTaskPage() {
+      this.$router.push({
+        name: 'TaskPage'
       });
     }
   }

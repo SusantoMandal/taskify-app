@@ -9,7 +9,7 @@ signUpUser = async (req, res) => {
       const userEmail = await userService.addUser(userData);
       const user = { email: userEmail };
       const accessToken = generateAuthToken(user);
-      res.status(201).send({accessToken});
+      res.status(201).send({accessToken,userName: userData.name});
   } catch(err) {
       res.send({
         error: err.message,
@@ -22,10 +22,10 @@ signInUser = async(req,res) => {
   try{
       const userData = req.body;
       isSignInValid(userData);
-      const userEmail = await userService.getUser(userData);
+      const {userEmail,userName} = await userService.getUser(userData);
       const user = { email: userEmail };
       const accessToken = generateAuthToken(user);
-      res.send({accessToken});
+      res.send({accessToken, userName});
   } catch(err) {
       res.send({
         error: err.message,

@@ -74,6 +74,11 @@ export default {
           this.$v.userData[key].$touch();
         }
       });
+    },
+    goToHome() {
+      this.$router.push({
+        name: 'HomePage'
+      });
     }
   },
   mounted() {

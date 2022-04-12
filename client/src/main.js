@@ -20,6 +20,7 @@ axios.interceptors.response.use(
     const errResponse = error.response;
     if (errResponse.data.code === 'ERR_203') {
       store.commit('user/removeAccessToken');
+      store.commit('user/removeUserName');
       store.hotUpdate(store.state);
       if (router.currentRoute.path === '/task') {
         router.push({

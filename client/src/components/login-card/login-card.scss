@@ -1,27 +1,52 @@
+@import '@/assets/styles/_helpers.scss';
+
 .login-card-container {
+  display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 20px;
   padding: 60px 40px 50px;
   background-color: white;
   // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  @include media-breakpoint-down(xs) {
+    // margin-top: 20px;
+    padding: 20px;
+    box-shadow: none;
+  }
 
   .login-header {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     font-size: 37px;
     font-weight: 700;
   }
   .is-invalid {
     color:#E22B24;
   }
+  .task-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
 .user-name, .user-password, .user-email {
     width: 320px;
-    margin: 25px 0px;
+    margin: 16px 0px;
+    @include media-breakpoint-down(xs) {
+      // max-width: 3px;
+      width: 100%;
+      max-width: 320px;
+      margin: 8px 0px;
+    }
   }
 
+  .login-card-btn {
+    display: flex;
+    width:100%;
+    justify-content: space-evenly;
+  }
   .submit-btn {
     width: 110px;
     height: 40px;
