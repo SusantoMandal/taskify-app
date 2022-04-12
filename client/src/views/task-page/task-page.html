@@ -81,10 +81,10 @@
         No Task has been added yet. Please enter a task.
       </div>
       <div v-else>
-        <div class="empty-task" v-if="(allTasks.length - completedTask) === 0 && activeLink === 'active'">
+        <div class="empty-task" v-if="activeLink === 'active' && (allTasks.length - completedTask) === 0 ">
           No Active task.
         </div>
-        <div class="empty-task" v-if="completedTask === 0 && activeLink === 'done'">
+        <div class="empty-task" v-if="activeLink === 'done' && completedTask === 0">
           No Completed task.
         </div>
       </div>

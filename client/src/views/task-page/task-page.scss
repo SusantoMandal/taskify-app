@@ -96,6 +96,7 @@
       margin-left: 32px;
       @include media-breakpoint-down(xs) {
         margin-left: 0px;
+        justify-content: center;
       }
 
       .task-link {
@@ -120,6 +121,10 @@
       margin-right: 56px;
       padding-bottom: 8px;
       border-bottom: 1px solid rgba(149, 157, 165, 0.2);
+      @include media-breakpoint-down(xs) {
+        width: 100%;
+        margin-right: 0px;
+      }
 
       .task-list {
         display: flex;
@@ -151,6 +156,9 @@
     .empty-task {
       margin-top: 40px;
       font-size: 24px;
+      @include media-breakpoint-down(xs) {
+        text-align: center;
+      }
     }
 
   }

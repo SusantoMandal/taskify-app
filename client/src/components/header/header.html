@@ -17,19 +17,23 @@
       Sign out
     </button>
   </div> -->
-    <b-dropdown  v-if="getAccessToken" no-caret toggle-class='customDropdown' variant='none' class="drp-btn" ref="login-dropdown" right offset="12">
+    <b-dropdown  v-if="getAccessToken" no-caret toggle-class='customDropdown shadow-none' variant='none' ref="login-dropdown" right offset="12">
       <template #button-content>
-        <button  type="button" class ="btn" style="font-size: 24px;
-        font-weight: 500; padding: 0px 3px 0px;">
+        <button  type="button" class ="btn dropbtn" >
           <i class="fa-solid fa-circle-user user-icon"></i>
         </button>
         <i class="fa fa-caret-up" v-if="dropdownItemVisible()"></i>
         <i class="fa fa-caret-down" v-else></i>
       </template>
-      <b-dropdown-item class="drp-name">Signed in as
-      <div style="font-weight: 700;">{{getUserName }}</div></b-dropdown-item>
+      <b-dropdown-header>Signed in as</b-dropdown-header>
+      <b-dropdown-text text-class="username-heading">{{getUserName }}</b-dropdown-text>
+      <b-dropdown-divider v-if="isTaskDropdown"></b-dropdown-divider>
+      <b-dropdown-item v-if="isTaskDropdown" @click="goToTaskPage">
+        <i class="fa-solid fa-list-check pr-1"></i>
+        Your tasks</b-dropdown-item>
       <b-dropdown-divider></b-dropdown-divider>
-      <b-dropdown-item v-if="isTaskDropdown" @click="goToTaskPage">Your tasks</b-dropdown-item>
-      <b-dropdown-item @click="signOutUser">Sign out</b-dropdown-item>
+      <b-dropdown-item @click="signOutUser" variant="danger">
+        <i class="fa fa-sign-out pr-1" aria-hidden="true"></i>
+        Sign out</b-dropdown-item>
     </b-dropdown>
 </div>

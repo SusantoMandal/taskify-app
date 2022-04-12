@@ -53,9 +53,12 @@
     border-color: none;
     color:none;
   }
-  .drp-btn /deep/.dropdown-item {
-        padding: 0px  0px 8px 12px;
-        // padding-left: 12px;;
+  .dropbtn {
+    font-size: 32px;
+    font-weight: 500;
+    padding: 0px 3px 0px;
   }
-
+  .username-heading {
+    font-weight: 700;
+  }
 }

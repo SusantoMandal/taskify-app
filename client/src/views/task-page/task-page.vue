@@ -50,13 +50,14 @@ export default {
       const payload = {
         description: this.taskData.taskDescription
       };
-      // this.$store.dispatch('pageLoader/show');
+      this.$store.dispatch('pageLoader/show');
       await this.$store.dispatch('task/addTask', payload);
       this.allTask();
-      // this.$store.dispatch('pageLoader/hide');
+      const toastPosition = this.isMobile();
+      this.$store.dispatch('pageLoader/hide');
       this.$bvToast.toast(this.taskData.taskDescription, {
         title: 'Task added successfully!!',
-        toaster: 'b-toaster-bottom-right',
+        toaster: toastPosition,
         autoHideDelay: 5000,
         variant: 'success',
         solid: true,
@@ -68,10 +69,10 @@ export default {
       const payload = {
         taskId
       };
-      // this.$store.dispatch('pageLoader/show');
+      this.$store.dispatch('pageLoader/show');
       await this.$store.dispatch('task/updateTask', payload);
       this.taskUpdate();
-      // this.$store.dispatch('pageLoader/hide');
+      this.$store.dispatch('pageLoader/hide');
     },
     taskUpdate() {
       if (this.activeLink === 'active') {
@@ -86,13 +87,14 @@ export default {
       const payload = {
         taskId
       };
-      // this.$store.dispatch('pageLoader/show');
+      this.$store.dispatch('pageLoader/show');
       await this.$store.dispatch('task/deleteTask', payload);
       this.allTask();
-      // this.$store.dispatch('pageLoader/hide');
+      const toastPosition = this.isMobile();
+      this.$store.dispatch('pageLoader/hide');
       this.$bvToast.toast(taskDescription, {
         title: 'Task deleted successfully!!',
-        toaster: 'b-toaster-bottom-right',
+        toaster: toastPosition,
         autoHideDelay: 5000,
         variant: 'danger',
         solid: true,
@@ -123,6 +125,12 @@ export default {
     },
     changeDescriptionStatus() {
       this.isDescriptionEmpty = false;
+    },
+    isMobile() {
+      if (window.screen.width <= 576) {
+        return 'b-toaster-top-right';
+      }
+      return 'b-toaster-bottom-right';
     }
   },
   async created() {
