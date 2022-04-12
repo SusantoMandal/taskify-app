@@ -1,3 +1,5 @@
+@import '@/assets/styles/_helpers.scss';
+
 .header-container {
   width: 100%;
   padding: 12px 15px 16px 15px;
@@ -27,6 +29,9 @@
 
   .sign-btn-container {
     margin: 0px 30px;
+    @include media-breakpoint-down(xs) {
+      margin: 0px;
+    }
 
      .user-icon {
       margin: 0px 10px;
@@ -38,6 +43,9 @@
       margin: 0px 10px;
       padding: 4px 16px;
       border-radius: 17px;
+      @include media-breakpoint-down(xs) {
+        margin: 0px 0px 0px 6px;
+      }
     }
   }
   .customDropdown {

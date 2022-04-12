@@ -16,7 +16,7 @@
         </span>
       </div>
 
-      <div style="width:100%; margin: 16px 0px 32px; padding-left: 9%;" class="mx-auto">
+      <div class="mx-auto task-form-container">
         <div class="form-group d-flex add-task-form">
           <input
             type="text"
@@ -27,7 +27,7 @@
             aria-describedby="description_error"
             @focus="changeDescriptionStatus"
           >
-          <span @click="addTask" class="my-auto">
+          <span @click="addTask" class="my-auto add-task-btn">
             <i class="fa-solid fa-circle-plus add-icon"></i>
           </span>
         </div>
