@@ -54,6 +54,10 @@ const user = {
     setUserName: (state, name) => {
       LocalStorage.setItem('userName', name);
       state.userName = name;
+    },
+    removeUserName: (state) => {
+      LocalStorage.removeItem('userName');
+      state.userName = null;
     }
   },
   getters: {
